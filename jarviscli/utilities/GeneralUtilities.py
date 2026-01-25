@@ -4,7 +4,7 @@ import os
 from platform import win32_ver
 import sys
 import warnings
-
+import update_window
 from colorama import Fore
 
 MACOS = 'darwin'
@@ -32,7 +32,9 @@ def print_say(text, self, color=""):
         removed in the future. Please use \
         ``JarvisAPI.say(text, color=\"\", speak=True))`` instead.",
         DeprecationWarning)
-    print(color + text + Fore.RESET)
+    # print(color + text + Fore.RESET)
+    print(text)
+    update_window.jarvis_speak(text)
     if self.enable_voice:
         self.speech.text_to_speech(text)
 

@@ -3,6 +3,7 @@ import random
 from colorama import Back
 
 from plugin import plugin
+import update_window
 
 
 @plugin('rockpaperscissors')
@@ -113,7 +114,8 @@ class rockpaperscissors():
     def get_rounds(self, prompt):
 
         while True:
-            rounds = input(prompt)
+            # rounds = input(prompt)
+            rounds = update_window.update(prompt)
             try:
                 if (int(rounds) <= 100):
                     return rounds
@@ -127,7 +129,7 @@ class rockpaperscissors():
         moves = ["rock", "r", "paper", "p", "scissors", "s", "exit", "score", "rounds"]
 
         while True:
-            u = input(prompt).lower()
+            u = update_window.update(prompt).lower()
             if u in moves:
                 if (u == "rock"):
                     u = "r"

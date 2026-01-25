@@ -1,5 +1,6 @@
 # -*- encoding: utf-8 -*-
 
+import update_window
 import os
 from colorama import Fore
 import nltk
@@ -8,6 +9,7 @@ import sys
 import tempfile
 from utilities.GeneralUtilities import print_say
 from CmdInterpreter import CmdInterpreter
+from Xlib import X, display, Xutil
 
 # register hist path
 HISTORY_FILENAME = tempfile.TemporaryFile('w+t')
@@ -34,20 +36,19 @@ class Jarvis(CmdInterpreter, object):
     # variable used at Breakpoint #1.
     # allows Jarvis say "Hi", only at the first interaction.
     first_reaction_text = ""
-    first_reaction_text += Fore.CYAN + \
-        'Jarvis\' sound is by default disabled.' + Fore.RESET
+    # first_reaction_text += Fore.CYAN + \
+        # 'Jarvis\' sound is by default disabled.' + Fore.RESET
+    # first_reaction_text += "\n"
+    # first_reaction_text += Fore.CYAN + 'In order to let Jarvis talk out loud type: '
+    # first_reaction_text += Fore.RESET + Fore.MAGENTA + 'enable sound' + Fore.RESET
+    # first_reaction_text += "\n"
+    first_reaction_text += "Type 'help' for a list of available actions."
     first_reaction_text += "\n"
-    first_reaction_text += Fore.CYAN + 'In order to let Jarvis talk out loud type: '
-    first_reaction_text += Fore.RESET + Fore.MAGENTA + 'enable sound' + Fore.RESET
-    first_reaction_text += "\n"
-    first_reaction_text += Fore.CYAN + \
-        "Type 'help' for a list of available actions." + Fore.RESET
-    first_reaction_text += "\n"
-    prompt = (
-        Fore.MAGENTA
-        + "{} Hi, what can I do for you?\n".format(PROMPT_CHAR)
-        + Fore.RESET)
 
+    prompt = ("Hi, what can I do for you?\n")
+    
+            
+    
     # Used to store user specific data
 
     def __init__(self, first_reaction_text=first_reaction_text,
@@ -85,6 +86,18 @@ class Jarvis(CmdInterpreter, object):
         """Hook that executes before every command."""
         words = line.split()
         HISTORY_FILENAME.write(line + '\n')
+
+
+        current = None
+        
+         
+
+
+
+
+
+
+
 
         # append calculate keyword to front of leading char digit (or '-') in line
         if words and (words[0].isdigit() or line[0] == "-"):
@@ -183,7 +196,15 @@ class Jarvis(CmdInterpreter, object):
         or "goodbye command")
         :return: Nothing to return.
         """
+       
         if command:
             self.execute_once(command)
         else:
-            self.cmdloop()
+            # BOOKMARK
+            # self.cmdloop()
+            # text = update_window.update()
+            text = ""
+            print("bawls")
+            self.cmdloop(text)
+            
+            

@@ -9,6 +9,7 @@ from colorama import Fore
 
 from packages.memory.memory import Memory
 from PluginManager import PluginManager
+import update_window
 from utilities import schedule
 from utilities.animations import SpinnerThread
 from utilities.GeneralUtilities import get_parent_directory
@@ -42,8 +43,10 @@ class JarvisAPI(object):
                       e.g. Fore.CYAN
         :param speak: False-, if text shouldn't be spoken even if speech is enabled
         """
-        print(color + text + Fore.RESET, flush=True)
+        # print(color + text + Fore.RESET, flush=True)
 
+        update_window.jarvis_speak(text)
+        
         if speak:
             self._jarvis.speak(text)
 
@@ -432,6 +435,7 @@ class CmdInterpreter(Cmd):
         self.scheduler.stop_all()
         sys.exit()
 
+    # BOOKMARK: commands pass through here
     def execute_once(self, command):
         self.get_api().eval(command)
         sys.exit()
