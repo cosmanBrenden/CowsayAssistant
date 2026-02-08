@@ -2,8 +2,10 @@ import sys
 from typing import Any
 # from Xlib import X, display, Xutil
 import pygame
+from pygame.locals import *
 
 pygame.init()
+pygame.font.init()
 
 
 def draw_input_box(surface, rect, color, text, font, text_color):
@@ -49,7 +51,7 @@ input_rect = pygame.Rect(50, 500, 700, 40)
 input_color = (216, 216, 216)
 active_color = (200, 200, 200)
 text_color = (0, 0, 0)
-font = pygame.font.SysFont('Arial', 28)
+# font = pygame.font.SysFont('Arial', 28)
 screen.fill((255, 255, 255))
 message_history = []
 pygame.display.flip()
